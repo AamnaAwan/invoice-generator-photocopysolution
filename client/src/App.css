@@ -1,0 +1,198 @@
+body {
+  margin: 0;
+  font-family: "Segoe UI", sans-serif;
+  background-color: #eef3f9;
+}
+
+.page {
+  display: flex;
+  justify-content: center;
+  padding: 40px;
+}
+
+.invoice-card {
+  background: white;
+  width: 90%;
+  max-width: 950px;
+  padding: 35px;
+  border-radius: 12px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+}
+
+/* Header */
+.header {
+  display: flex;
+  align-items: center;
+  border-bottom: 3px solid #2563eb;
+  padding-bottom: 15px;
+  margin-bottom: 25px;
+  flex-wrap: wrap;
+}
+
+.logo-box {
+  width: 80px;
+  height: 80px;
+  background-color: #2563eb;
+  color: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: bold;
+  margin-right: 20px;
+  border-radius: 8px;
+  overflow: hidden;
+}
+
+.title-box h1 {
+  margin: 0;
+  color: #1e3a8a;
+  font-size: 1.8rem;
+}
+
+.title-box p {
+  margin: 4px 0 0 0;
+  color: #555;
+  font-size: 1rem;
+}
+
+/* Customer Info */
+.info-section {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 25px;
+  flex-wrap: wrap;
+}
+
+.input-group {
+  display: flex;
+  flex-direction: column;
+  width: 48%;
+  margin-bottom: 15px;
+}
+
+label {
+  font-size: 14px;
+  margin-bottom: 5px;
+  color: #444;
+}
+
+input {
+  padding: 10px;
+  border-radius: 6px;
+  border: 1px solid #d1d5db;
+}
+
+/* Table */
+table {
+  width: 100%;
+  border-collapse: collapse;
+  overflow-x: auto;
+}
+
+th {
+  background-color: #2563eb;
+  color: white;
+  padding: 10px;
+}
+
+td {
+  padding: 10px;
+  border-bottom: 1px solid #e5e7eb;
+  text-align: center;
+}
+
+td input {
+  width: 90%;
+  padding: 6px;
+}
+
+/* Buttons */
+.add-btn {
+  margin-top: 15px;
+  padding: 8px 15px;
+  background-color: #2563eb;
+  color: white;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+}
+
+.add-btn:hover {
+  background-color: #1e40af;
+}
+
+.remove-btn {
+  background: none;
+  border: none;
+  color: red;
+  font-size: 16px;
+  cursor: pointer;
+}
+
+.total-section {
+  text-align: right;
+  margin-top: 20px;
+  color: #1e3a8a;
+}
+
+/* PDF Button */
+.pdf-btn {
+  background-color: #1e3a8a;
+  color: white;
+  padding: 12px 24px;
+  border-radius: 6px;
+  border: none;
+  cursor: pointer;
+  font-size: 16px;
+}
+
+.pdf-btn:hover {
+  background-color: #1e40af;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .header {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .title-box {
+    margin-top: 10px;
+  }
+
+  .info-section {
+    flex-direction: column;
+  }
+
+  .input-group {
+    width: 100%;
+  }
+
+  table, td, th {
+    font-size: 14px;
+  }
+
+  .pdf-btn, .add-btn {
+    width: 100%;
+    margin-top: 10px;
+  }
+}
+
+@media (max-width: 480px) {
+  .invoice-card {
+    padding: 20px;
+  }
+
+  .title-box h1 {
+    font-size: 1.4rem;
+  }
+
+  .title-box p {
+    font-size: 0.9rem;
+  }
+
+  td input {
+    width: 80%;
+  }
+}
