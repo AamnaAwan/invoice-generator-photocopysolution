@@ -4,7 +4,11 @@ import logo from "./assets/logo.png";
 
 function App() {
   const [customer, setCustomer] = useState("");
+  const [billedTo, setBilledTo] = useState("");
   const [date, setDate] = useState("");
+  const [shippingFee, setShippingFee] = useState(0);
+  const [paymentStatus, setPaymentStatus] = useState("Unpaid");
+
   const [items, setItems] = useState([{ name: "", qty: 1, price: 0 }]);
 
   const handleChange = (index, field, value) => {
@@ -16,10 +20,12 @@ function App() {
   const addItem = () => setItems([...items, { name: "", qty: 1, price: 0 }]);
   const removeItem = (index) => setItems(items.filter((_, i) => i !== index));
 
-  const totalAmount = items.reduce(
+  const subTotal = items.reduce(
     (sum, item) => sum + item.qty * item.price,
     0
   );
+
+  const totalAmount = subTotal + Number(shippingFee);
 
   const handleGeneratePDF = async () => {
     try {
@@ -28,8 +34,11 @@ function App() {
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
           customer,
+          billedTo,
           date,
           items,
+          shippingFee,
+          paymentStatus,
           total: totalAmount,
         }),
       });
@@ -51,23 +60,25 @@ function App() {
   return (
     <div className="page">
       <div className="invoice-card">
+
         {/* Header */}
         <div className="header">
           <div className="logo-box">
             <img
               src={logo}
               alt="Logo"
-              style={{ width: "100%", height: "100%", objectFit: "contain" }}
+              className="logo-img"
             />
           </div>
           <div className="title-box">
             <h1>Photocopy Solutions</h1>
-            <p>Professional Photocopy Machines & Services</p>
+            <p>Photocopy Machines & Services Okara</p>
           </div>
         </div>
 
         {/* Customer Info */}
         <div className="info-section">
+
           <div className="input-group">
             <label>Customer Name</label>
             <input
@@ -77,6 +88,17 @@ function App() {
               placeholder="Enter customer name"
             />
           </div>
+
+          <div className="input-group">
+            <label>Billed To</label>
+            <input
+              type="text"
+              value={billedTo}
+              onChange={(e) => setBilledTo(e.target.value)}
+              placeholder="Billing address / company"
+            />
+          </div>
+
           <div className="input-group">
             <label>Date</label>
             <input
@@ -84,6 +106,17 @@ function App() {
               value={date}
               onChange={(e) => setDate(e.target.value)}
             />
+          </div>
+
+          <div className="input-group">
+            <label>Payment Status</label>
+            <select
+              value={paymentStatus}
+              onChange={(e) => setPaymentStatus(e.target.value)}
+            >
+              <option value="Paid">Paid</option>
+              <option value="Unpaid">Unpaid</option>
+            </select>
           </div>
         </div>
 
@@ -147,17 +180,28 @@ function App() {
           + Add Item
         </button>
 
-        {/* Total Section */}
+        {/* Totals */}
         <div className="total-section">
+          <div>Subtotal: PKR {subTotal}</div>
+          <div>
+            Shipping Fee: PKR{" "}
+            <input
+              type="number"
+              value={shippingFee}
+              onChange={(e) => setShippingFee(e.target.value)}
+              className="shipping-input"
+            />
+          </div>
           <h2>Total: PKR {totalAmount}</h2>
         </div>
 
         {/* PDF Button */}
-        <div style={{ textAlign: "right", marginTop: "20px" }}>
+        <div className="pdf-container">
           <button className="pdf-btn" onClick={handleGeneratePDF}>
             Generate PDF
           </button>
         </div>
+
       </div>
     </div>
   );
