@@ -1,7 +1,6 @@
 import { useState } from "react";
 import "./App.css";
 import logo from "./assets/logo.png";
-
 function App() {
   const [customer, setCustomer] = useState("");
   const [billedTo, setBilledTo] = useState("");
@@ -29,7 +28,7 @@ function App() {
 
   const handleGeneratePDF = async () => {
     try {
-      const response = await fetch("http://localhost:5000/generate-pdf", {
+      const response = await fetch("https://invoice-generator-photocopysolution.onrender.com/generate-pdf", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
