@@ -1,21 +1,19 @@
 {
-  "name": "server",
+  "name": "invoice-backend",
   "version": "1.0.0",
-  "description": "",
-  "main": "index.js",
+  "description": "Backend for invoice PDF generation",
+  "main": "server.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start": "node server.js"
   },
-  "keywords": [],
-  "author": "",
-  "license": "ISC",
   "type": "commonjs",
   "dependencies": {
+    "@sparticuz/chromium": "^143.0.4",
     "cors": "^2.8.6",
     "dayjs": "^1.11.19",
     "dotenv": "^17.3.1",
     "express": "^5.2.1",
-    "puppeteer": "^24.37.5",
+    "puppeteer-core": "^24.37.5",
     "uuid": "^13.0.0"
   }
 }
